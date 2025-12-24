@@ -12,6 +12,7 @@ The most comprehensive, up-to-date guide to AWS Free Tier. Covers the July 2025 
 - [Always Free (Never Expires)](#always-free-never-expires)
 - [12-Month Free Tier (Legacy Accounts Only)](#12-month-free-tier-legacy-accounts-only)
 - [Short-Term Trials](#short-term-trials-paid-plan--legacy-only)
+- [Free Tier in AWS Organizations](#free-tier-in-aws-organizations)
 - [Common Gotchas](#common-gotchas-things-that-cost-money)
 - [Track Your Free Tier Usage](#track-your-free-tier-usage)
 - [Quick Reference](#quick-reference)
@@ -158,6 +159,42 @@ NOT available to Free Plan accounts. Duration starts when you first activate the
 | **Textract** | 3 months | 1K Detect pages + 100 Analyze pages/mo |
 | **Translate (Custom)** | 2 months | 500K chars/mo Active Custom Translation |
 | **Wickr** | 3 months | Up to 30 users, unlimited controls (Available on both plans) |
+
+---
+
+## Free Tier in AWS Organizations
+
+If your account is part of an AWS Organization, free tier behavior changes significantly.
+
+| Free Tier Type | Organization Behavior |
+|----------------|----------------------|
+| **Always Free** | Shared/aggregated across all accounts in the org |
+| **12-Month Free Tier** | Shared/aggregated across all accounts in the org |
+| **Free Plan credits** | Expire immediately when joining an org |
+| **Short-Term Trials** | Per-account AND per-region |
+
+### Always Free & 12-Month Tiers Are Shared
+
+Usage is aggregated across all accounts. Example:
+- Account A uses 400 EC2 hours
+- Account B uses 400 EC2 hours
+- Total: 800 hours against the 750-hour limit = 50 hours billed
+
+The 12-month eligibility starts from when the **management account** was created, not each member account.
+
+### Free Plan Credits Expire on Joining
+
+If you have a Free Plan account (post-July 2025) and join an Organization:
+- Your credits expire immediately
+- Account converts to Paid Plan
+- You cannot earn more Free Plan credits
+
+### Short-Term Trials Are Independent
+
+Services like GuardDuty give each account its own 30-day trial, in each region:
+- Enable GuardDuty in us-east-1 → 30 days free
+- Enable it later in eu-west-1 → another 30 days free there
+- Each account in the org gets its own trials
 
 ---
 
